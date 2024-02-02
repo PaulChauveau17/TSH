@@ -1,0 +1,11 @@
+push eax
+pop ecx
+push 0
+pop eax
+inc eax
+push eax
+push esp
+pop eax
+imul eax,dword ptr[eax],0x00410041
+push eax
+pop ecx

@@ -1,0 +1,20 @@
+running = 1
+address = get_screen_ea()
+seaddress = SegEnd( address )
+
+while ( running == 1 ):
+     naddress = find_not_func( address, SEARCH_DOWN )
+     if ( BADADDR != naddress ):
+             MakeFunction( naddress, BADADDR )
+             address = naddress;
+     
+     
+     if ( get_item_size( address ) == 0):
+             running = 0
+             
+     address = address + get_item_size( address )
+
+     if ( address == BADADDR):
+             running = 0
+     if ( address >= seaddress ):
+             running = 0

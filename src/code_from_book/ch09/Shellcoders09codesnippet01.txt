@@ -1,0 +1,7 @@
+00401066 80 00 42             add         byte ptr [eax],42h
+00401069 00 6D 00             add         byte ptr [ebp],ch
+0040106C 40                   inc         eax
+0040106D 00 6D 00             add         byte ptr [ebp],ch
+00401070 40                   inc         eax
+00401071 00 6D 00             add         byte ptr [ebp],ch
+
